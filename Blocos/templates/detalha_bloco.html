@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+
+        .produto-card {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            margin: auto; /* Adicionado para centralizar horizontalmente */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        p.inline-block {
+            display: inline-block; /* Adicionado para colocar em linha */
+            margin-top: 15px;
+            color: #333;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        button.voltar {
+            background-color: red;
+            color: white;
+        }
+
+        button.editar {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+<div class="produto-card">
+    <h1>Detalhes do Bloco</h1>
+    <p>Job: {{ object.Job }}</p>
+    <p>Série: {{ object.Serie }}</p>
+    <p>Quantidade de Pontos: {{ object.qtdPontos }}</p>
+    <p>Quantidade de Resistência: {{ object.qtdResistencia }}</p>
+    <p>Formato do Bloco: {{ object.formatoBloco }}</p>
+    <p>Entre Centros X: {{ object.entreCentrosX }}</p>
+    <p>Entre Centros Y: {{ object.entreCentrosY }}</p>
+    <p>Observações: {{ object.obs }}</p>
+    <p class="inline-block">PDF:</p><a href="{{ object.pdf.url }}" target="_blank">Visualizar</a><br>
+    <a href="{% url 'EditaBloco' pk=object.pk %}"><button class="editar">Editar</button></a>
+    <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
+</div>
+
+{% endblock %}

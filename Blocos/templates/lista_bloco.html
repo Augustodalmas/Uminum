@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+
+        .produto-grid{
+            width: 94%;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .static {
+            position: fixed;
+            bottom: 20px;
+            right: 40px;
+            font-size: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .static b{
+            font-size: 35px;
+        }
+
+        @media (max-width: 1000px) {
+            .static {
+                right: 10px; /* Distância menor quando a tela é pequena */
+            }
+
+            .card h2{
+                font-size: 20px;
+            }
+
+            .one, .two, .three, .four{
+                font-size: 14px;
+                background-color: rgb(195, 195, 195);
+                border-radius: 5px;
+                border: 1px solid black;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .static {
+                right: 6px; /* Distância menor quando a tela é pequena */
+            }
+
+            .card h2{
+                font-size: 16px;
+            }
+
+            .one, .two, .three, .four{
+                font-size: 10px;
+            }
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .one, .two, .three, .four{
+            background-color: rgb(195, 195, 195);
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        
+        select{
+            width: 180px;
+            height: 35px;
+            margin: 0px 10px;
+            border-radius: 5px;
+        }
+        </style>
+
+    <form method="GET" action="{% url 'ListaBloco' %}">
+        <input type="text" autocomplete="off" name="search"  placeholder="Buscar Bloco..."> <!--A tag name, serve como referencia para a URL pesquisar no banco de dados-->
+        <select name="filter_by">
+            <option value="">-</option>
+            <option value="entreCentrosX">Entre Centros X</option>
+            <option value="entreCentrosY">Entre Centros Y</option>
+            <option value="formatoBloco">Formato do Bloco</option>
+            <option value="qtdPontos">Quantidade de Pontos</option>
+            <option value="Job">Job</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="produto-grid">
+        {% if produto %}
+            {% for object in produto %}
+            <a href="{% url 'DetalheBloco' object.pk %}">
+                <div class="card">
+                    <h2>JOB {{ object.Job }}-24</h2>
+                    <div class="content-box">
+                        <span class="three">Formato: {{ object.formatoBloco }}</span>
+                        <span class="four">Qtd de pontos: {{ object.qtdPontos }}</span>
+                        <span class="one">X: {{ object.entreCentrosX }}</span>
+                        <span class="two">Y: {{ object.entreCentrosY }}</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <a href="{% url 'novoJob' %}" class="static"><b>+</b>
+        <i class="fas fa-plus"></i> <!-- Ícone de adição do Font Awesome -->
+    </a>
+
+
+{% endblock %}

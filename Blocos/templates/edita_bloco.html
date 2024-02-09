@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+
+        .produto-card {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 500px;
+            margin: auto; /* Adicionado para centralizar horizontalmente */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        p.inline-block {
+            display: inline-block; /* Adicionado para colocar em linha */
+            margin-top: 15px;
+            color: #333;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        button.voltar {
+            background-color: red;
+            color: white;
+        }
+
+        button.editar {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        button.salvar {
+            background-color: green;
+            color: white;
+        }
+
+        .form-alinhado-esquerda {
+        text-align: left;
+    }
+
+    .form-alinhado-esquerda label {
+        display: inline-block;
+        width: 200px; /* ou ajuste conforme necessário */
+        text-align: left;
+    }
+
+    .form-alinhado-esquerda input {
+        display: inline-block;
+        width: calc(100% - 210px); /* ou ajuste conforme necessário */
+    }
+
+    a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .botao-submit {
+        background-color: #4CAF50;
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+
+    .form-alinhado-esquerda select{
+            padding: 0px 11px;
+            margin: 5px;
+            width: 314px;
+            height: 40px;
+            appearance: none;
+            font-size: 16px;
+        }
+
+    @media (max-width: 400px) {
+        .produto-card{
+            width: 320px;
+        }
+        
+        
+        .form-alinhado-esquerda{
+            width: 100%;
+        }
+
+        .form-alinhado-esquerda select{
+            width: 131px;
+        }
+
+        option[value="pdf"] {
+                display: none;
+            }
+    }
+
+    </style>
+<div class="produto-card">
+    <h1>Editar Informações Bloco</h1>
+    <form method="post" class="form-alinhado-esquerda" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_table}}
+        <input type='submit' name="Atualizar" id="Atualizar" class="botao-submit">
+        <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+
+        .produto-card {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 600px;
+            margin: auto; /* Adicionado para centralizar horizontalmente */
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        p.inline-block {
+            display: inline-block; /* Adicionado para colocar em linha */
+            margin-top: 15px;
+            color: #333;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        button.voltar {
+            background-color: red;
+            color: white;
+            width: 290px;
+            width: 0px auto;
+        }
+
+        button.editar {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        button.salvar {
+            background-color: green;
+            color: white;
+        }
+
+
+        .form-alinhado-esquerda {
+        text-align: center;
+        }
+
+        .form-alinhado-esquerda label {
+            display: inline-block;
+            width: 300px; /* ou ajuste conforme necessário */
+            text-align: left;
+        }
+
+        .form-alinhado-esquerda input {
+            display: inline-block;
+            width: calc(100% - 210px); /* ou ajuste conforme necessário */
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .botao-submit {
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border: none;
+        border-radius: 5px; 
+        cursor: pointer; 
+        width: 100px;
+        }
+
+        .form-item{
+            align-items: left;
+        }
+
+        .label-cell {
+            text-align: left;
+
+        }
+
+        .input-cell {
+            text-align: right;
+            width: 100%;
+            margin: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .input-cell select{
+            padding: 0px 11px;
+            margin: 5px;
+            width: calc(100% - 187px);
+            height: 40px;
+            appearance: none;
+            font-size: 16px;
+        }
+
+        .input-cell input{
+            font-size: 16px;
+        }
+
+        #id_pdf{
+            width: 280px;
+        }
+
+        #Atualizar{
+            width: 290px;
+        }
+
+    </style>
+<div class="produto-card">
+    <h1>Adicionar novo Bloco</h1>
+    <form method="post" class="form-alinhado-esquerda" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td class="label-cell"><p>Job:</p></td>
+                <td class="input-cell">{{ form.Job }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="error-message">{{ form.Job.errors }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>Série:</p></td>
+                <td class="input-cell">{{ form.Serie }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>QtdPontos:</p></td>
+                <td class="input-cell">{{ form.qtdPontos }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>QtdResistencia:</p></td>
+                <td class="input-cell">{{ form.qtdResistencia }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>FormatoBloco:</p></td>
+                <td class="input-cell">{{ form.formatoBloco }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>EntreCentrosX:</p></td>
+                <td class="input-cell">{{ form.entreCentrosX }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>EntreCentrosY:</p></td>
+                <td class="input-cell">{{ form.entreCentrosY }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>Obs:</p></td>
+                <td class="input-cell">{{ form.obs }}</td>
+            </tr>
+            <tr>
+                <td class="label-cell"><p>Pdf:</p></td>
+                <td class="input-cell">{{ form.pdf }}</td>
+            </tr>
+
+        </table>
+        <input type='submit' name="Atualizar" id="Atualizar" class="botao-submit">
+    </form>
+    <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Página</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-Wl2zOsNQs3hWBoR/5cBZz7U7nAYGtqW17aHEWnr5lv7WgN1GgA/4S+0DkI3CUlIs+hSfLlFYQ8SMyhGzI7zm9Cg==" crossorigin="anonymous" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #3ca4ff;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="{% url 'ListaBloco' %}"><h1>Blocos Uminum System</h1></a>
+        <!-- Adicione elementos personalizados do cabeçalho aqui -->
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>
