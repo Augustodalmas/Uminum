@@ -40,13 +40,19 @@
             text-decoration: none;
             color: black;
         }
+
+        #cabeca{
+            font-family: 'Protest Riot', sans-serif;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="{% url 'ListaBloco' %}"><h1>Blocos Uminum System</h1></a>
-        <!-- Adicione elementos personalizados do cabeçalho aqui -->
+        <a href="{% url 'ListaBloco' %}" id="cabeca"><h1>Gerenciamento de blocos manifolds</h1></a>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Protest+Riot&display=swap" rel="stylesheet">
     </header>
 
     <main>

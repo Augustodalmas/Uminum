@@ -109,9 +109,9 @@
         </style>
 
     <form method="GET" action="{% url 'ListaBloco' %}">
-        <input type="text" autocomplete="off" name="search"  placeholder="Buscar Bloco..."> <!--A tag name, serve como referencia para a URL pesquisar no banco de dados-->
+        <input type="text" autocomplete="off" name="search"  placeholder="Buscar..."> <!--A tag name, serve como referencia para a URL pesquisar no banco de dados-->
         <select name="filter_by">
-            <option value="">-</option>
+            <option value="">Selecione um filtro</option>
             <option value="entreCentrosX">Entre Centros X</option>
             <option value="entreCentrosY">Entre Centros Y</option>
             <option value="formatoBloco">Formato do Bloco</option>

@@ -40,15 +40,6 @@ class novoBloco(CreateView):
     template_name = 'novo_bloco.html'
     success_url = '/'
 
-    """def post(self, request, *args, **kwargs):
-        # Verificar se o item já existe
-        if Produto.objects.filter(Job=request.POST['Job']).exists():
-            # Se existir, retornar um erro
-            return HttpResponseBadRequest("O item já existe!")
-        else:
-            # Se não existir, continuar com a criação normal
-            return super().post(request, *args, **kwargs)"""
-
 
 class detalheBloco(DetailView):
     model = Produto
