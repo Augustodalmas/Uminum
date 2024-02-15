@@ -14,22 +14,22 @@ class listaBlocos(ListView):
     context_object_name = 'produto'
 
     def get_queryset(self):
-        queryset = super().get_queryset().order_by('Job')
+        queryset = super().get_queryset().order_by('-Job')
         search_term = self.request.GET.get('search')
         filter_by = self.request.GET.get('filter_by')
 
         if search_term and filter_by:
             # Verifica qual campo o usuário deseja pesquisar e filtra o queryset
             if filter_by == 'entreCentrosX':
-                queryset = queryset.filter(entreCentrosX__icontains=search_term)
+                queryset = queryset.filter(entreCentrosX__contains=search_term)
             elif filter_by == 'entreCentrosY':
-                queryset = queryset.filter(entreCentrosY__icontains=search_term)
+                queryset = queryset.filter(entreCentrosY__contains=search_term)
             elif filter_by == 'formatoBloco':
-                queryset = queryset.filter(formatoBloco__formato__icontains=search_term)
+                queryset = queryset.filter(formatoBloco__formato__contains=search_term)
             elif filter_by == 'qtdPontos':
-                queryset = queryset.filter(qtdPontos__icontains=search_term)
+                queryset = queryset.filter(qtdPontos__contains=search_term)
             elif filter_by == 'Job':
-                queryset = queryset.filter(Job__icontains=search_term)
+                queryset = queryset.filter(Job__contains=search_term)
 
         return queryset
 

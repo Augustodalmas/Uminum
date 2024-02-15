@@ -10,8 +10,8 @@
         .card {
             border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 15px;
-            margin: 10px;
+            padding: 10px;
+            margin: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -60,7 +60,7 @@
                 font-size: 16px;
             }
 
-            .one, .two, .three, .four{
+            .one, .two, .three, .four, .five{
                 font-size: 10px;
             }
         }
@@ -92,19 +92,28 @@
             background-color: #0056b3;
         }
 
-        .one, .two, .three, .four{
+        .one, .two, .three, .four, .five{
             background-color: rgb(195, 195, 195);
             padding: 5px;
             margin: 5px;
             border-radius: 5px;
             border: 1px solid black;
         }
-        
+
+        span{
+            font-size: 14px;
+        }        
+
         select{
             width: 180px;
             height: 35px;
             margin: 0px 10px;
             border-radius: 5px;
+        }
+
+        #jobs{
+            font-size: 22px;
+            font-weight: bold;
         }
         </style>
 
@@ -126,12 +135,13 @@
             {% for object in produto %}
             <a href="{% url 'DetalheBloco' object.pk %}">
                 <div class="card">
-                    <h2>JOB {{ object.Job }}-24</h2>
                     <div class="content-box">
+                        <span id="jobs">JOB {{ object.Job }}</span>
                         <span class="three">Formato: {{ object.formatoBloco }}</span>
                         <span class="four">Qtd de pontos: {{ object.qtdPontos }}</span>
                         <span class="one">X: {{ object.entreCentrosX }}</span>
                         <span class="two">Y: {{ object.entreCentrosY }}</span>
+                        <span class="five">OBS: {{ object.obs }}</span>
                     </div>
                 </div>
             </a>

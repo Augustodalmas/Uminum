@@ -18,15 +18,15 @@ class Serie(models.Model):
 
 class Produto(models.Model):
     id = models.AutoField(primary_key=True)
-    Job = models.IntegerField(blank=False, null=False)
+    Job = models.CharField(max_length=4 ,blank=False, null=False)
     Serie = models.ForeignKey(Serie, on_delete=models.PROTECT, related_name='serieBlocos')
     qtdPontos = models.IntegerField(blank=False, null=False)
     qtdResistencia = models.IntegerField(blank=False, null=False)
     formatoBloco = models.ForeignKey(Formato, on_delete=models.PROTECT, related_name='formasBlocos')
     entreCentrosX = models.IntegerField(blank=False, null=False)
     entreCentrosY = models.IntegerField(blank=False, null=False)
-    pdf = models.FileField(upload_to='media/pdfs', default='media/pdfs/ola.pdf')
-    obs = models.CharField(max_length=200)
+    pdf = models.FileField(upload_to='', default='media/pdfs/ola.pdf', blank=False, null=False)
+    obs = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self) -> str:
-        return str(self.Job)
+        return self.Job
