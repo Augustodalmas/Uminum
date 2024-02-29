@@ -2,9 +2,9 @@
 
 {% block content %}
     <style>
-
         .produto-grid{
             width: 94%;
+            float: left;
         }
 
         .card {
@@ -13,74 +13,72 @@
             padding: 10px;
             margin: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .filters {
+            width: 30%;
+            float: left; /* Adiciona float para que o elemento flutue à esquerda */
+            margin-top: 25px;
+        }
+
+        .form-filter {
+            clear: both; /* Limpa os floats anteriores */
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .static {
             position: fixed;
             bottom: 20px;
             right: 40px;
-            font-size: 20px;
             background-color: #007bff;
             color: #fff;
             border-radius: 10px;
-            padding: 10px;
+            padding: 8px;
+            padding-top: 2px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            text-decoration: none;
         }
 
         .static b{
             font-size: 35px;
         }
 
-        @media (max-width: 1000px) {
-            .static {
-                right: 10px; /* Distância menor quando a tela é pequena */
-            }
-
-            .card h2{
-                font-size: 20px;
-            }
-
-            .one, .two, .three, .four{
-                font-size: 14px;
-                background-color: rgb(195, 195, 195);
-                border-radius: 5px;
-                border: 1px solid black;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .static {
-                right: 6px; /* Distância menor quando a tela é pequena */
-            }
-
-            .card h2{
-                font-size: 16px;
-            }
-
-            .one, .two, .three, .four, .five{
-                font-size: 10px;
-            }
-        }
-
         form {
-            display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        input[type="text"] {
-            width: 300px;
-            padding: 10px;
+        input[type="text"], [type="number"], button{
+            width: 120px;
+            padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        #id_Serie{
+            border: 1px solid #ccc;
+            width: 120px;
+            padding: 5px;
+            margin: 0;
+            margin-right: 10px;
+        }
+
+        input[name="search"]{
+            width: 600px;
+            margin: 20px 0px;
+            margin-right: 20px;
         }
 
         button {
-            padding: 10px;
+            padding: 6px;
             border: none;
             background-color: #007bff;
             color: #fff;
@@ -102,6 +100,7 @@
 
         span{
             font-size: 14px;
+            color: black;
         }        
 
         select{
@@ -115,19 +114,45 @@
             font-size: 22px;
             font-weight: bold;
         }
+
+        .filters{
+            width: 100%;
+            color: rgb(0, 0, 0);
+        }
+
         </style>
 
-    <form method="GET" action="{% url 'ListaBloco' %}">
-        <input type="text" autocomplete="off" name="search"  placeholder="Buscar..."> <!--A tag name, serve como referencia para a URL pesquisar no banco de dados-->
-        <select name="filter_by">
-            <option value="">Selecione um filtro</option>
-            <option value="entreCentrosX">Entre Centros X</option>
-            <option value="entreCentrosY">Entre Centros Y</option>
-            <option value="formatoBloco">Formato do Bloco</option>
-            <option value="qtdPontos">Quantidade de Pontos</option>
-            <option value="Job">Job</option>
-        </select>
-        <button type="submit">Buscar</button>
+    <form method="GET" action="{% url 'ListaBloco' %}" class="form-filter">
+        <!--<input type="text" autocomplete="off" name="search"  placeholder="Buscar...">A tag name, serve como referencia para a URL pesquisar no banco de dados-->
+        <h1>Tabela de blocos</h1>
+        <div class="filters">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Série:</th>
+                        <th>Qtd. Pontos:</th>
+                        <th>Qtd. Resistencia:</th>
+                        <th>FormatoBloco:</th>
+                        <th>EntreCentrosX:</th>
+                        <th>EntreCentrosY:</th>
+                        <th>Job:</th>
+                        <th>Buscar:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{filter.form.Serie}}</td>
+                        <td>{{filter.form.qtdPontos}}</td>
+                        <td>{{filter.form.qtdResistencia}}</td>
+                        <td>{{filter.form.formatoBloco__formato}}</td>
+                        <td>{{filter.form.entreCentrosX}}</td>
+                        <td>{{filter.form.entreCentrosY}}</td>
+                        <td>{{filter.form.Job}}</td>
+                        <td><button type="submit">Buscar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--Filter-->
     </form>
 
     <div class="produto-grid">

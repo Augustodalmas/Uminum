@@ -7,11 +7,29 @@ from Blocos.form import formProduto
 from django.urls import reverse_lazy
 from django.http import HttpResponseBadRequest
 from django.db.models import Q
+from django_filters.views import FilterView
+from .filters import ProdutoFilter
 
 class listaBlocos(ListView):
     model = Produto
     template_name = 'lista_bloco.html'
     context_object_name = 'produto'
+
+    def get_queryset(self):
+        queryset = Produto.objects.all()
+        self.filterset = ProdutoFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = self.filterset
+        return context
+"""
+class listaBlocos(ListView):
+    model = Produto
+    template_name = 'lista_bloco.html'
+    context_object_name = 'produto'
+    filterset_class = ProdutoFilter
 
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-Job')
@@ -32,7 +50,7 @@ class listaBlocos(ListView):
                 queryset = queryset.filter(Job__contains=search_term)
 
         return queryset
-
+"""
 
 class novoBloco(CreateView):
     model = Produto
