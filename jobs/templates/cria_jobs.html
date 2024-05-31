@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 {% load crispy_forms_tags %}
 <style>
@@ -13,6 +12,7 @@
       cursor: pointer;
       border-radius: 5px;
       font-size: 16px;
+      display: inline-block; /* Adicionado para alinhar na mesma linha */
   }
 
   .create{
@@ -25,6 +25,7 @@
       border-radius: 5px;
       font-size: 16px;
       text-align: center;
+      display: inline-block; /* Adicionado para alinhar na mesma linha */
   }
 
 </style>
@@ -35,8 +36,7 @@
   {{ form|crispy }}
 
   <input class="create" type="submit" value="Adicionar" />
-  <a href="{% url 'ListaJob' %}"><button class="voltar">Voltar</button></a>
-
+  <a href="{% url 'ListaJob' %}" class="voltar">Voltar</a>
 </form>
 
 {% endblock %}

@@ -128,7 +128,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+#AMBIENTE DE TESTE
+#MEDIA_URL = 'C:/Users/augus/OneDrive/Área de Trabalho/PESSOAL/Programacao_Pessoal/Uminum - Blocos finalizados/UminumBloco/static/teste/'
+#MEDIA_ROOT = 'C:/Users/augus/OneDrive/Área de Trabalho/PESSOAL/Programacao_Pessoal/Uminum - Blocos finalizados/UminumBloco/static/teste/'
+#EMPRESA
 MEDIA_URL = 'S:/Magazine/'
 MEDIA_ROOT = 'S:/Magazine/'
 

@@ -7,11 +7,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 8px;
-            width: 400px;
+            width: 500px;
             margin: auto; /* Adicionado para centralizar horizontalmente */
         }
-
-
 
         h1 {
             color: #333;
@@ -60,23 +58,65 @@
             color: white;
         }
 
-        .container-fluid, .produto-card{
-            height: 100%;
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .info-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            /* Adicionando espaço entre as colunas */
+            padding-right: 20px;
+        }
+
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #333;
+            width: 70%; /* Ajuste da largura da primeira coluna */
         }
     </style>
-<div class="produto-card">
-    <h1>Detalhes do Bloco</h1>
-    <p>Job: {{ object.Job }}</p>
-    <p>Série: {{ object.Serie }}</p>
-    <p>Quantidade de Pontos: {{ object.qtdPontos }}</p>
-    <p>Quantidade de Resistência: {{ object.qtdResistencia }}</p>
-    <p>Formato do Bloco: {{ object.formatoBloco }}</p>
-    <p>Entre Centros X: {{ object.entreCentrosX }}</p>
-    <p>Entre Centros Y: {{ object.entreCentrosY }}</p>
-    <p>Observações: {{ object.obs }}</p>
-    <p class="inline-block">PDF:</p><a href="{{ object.pdf.url }}" target="_blank">Visualizar</a><br>
-    <a href="{% url 'EditaBloco' pk=object.pk %}"><button class="editar">Editar</button></a>
-    <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
-</div>
+
+    <div class="produto-card">
+        <h1>Informações do JOB {{ object.Job }}</h1>
+        <table class="info-table">
+            <tr>
+                <td><strong>Job:</strong></td>
+                <td>{{ object.Job }}</td>
+            </tr>
+            <tr>
+                <td><strong>Série:</strong></td>
+                <td>{{ object.Serie }}</td>
+            </tr>
+            <tr>
+                <td><strong>Quantidade de Pontos:</strong></td>
+                <td>{{ object.qtdPontos }}</td>
+            </tr>
+            <tr>
+                <td><strong>Quantidade de Resistência:</strong></td>
+                <td>{{ object.qtdResistencia }}</td>
+            </tr>
+            <tr>
+                <td><strong>Formato do Bloco:</strong></td>
+                <td>{{ object.formatoBloco }}</td>
+            </tr>
+            <tr>
+                <td><strong>Entre Centros X:</strong></td>
+                <td>{{ object.entreCentrosX }}</td>
+            </tr>
+            <tr>
+                <td><strong>Entre Centros Y:</strong></td>
+                <td>{{ object.entreCentrosY }}</td>
+            </tr>
+            <tr>
+                <td><strong>Observações:</strong></td>
+                <td>{{ object.obs }}</td>
+            </tr>
+        </table>
+        <p class="inline-block">PDF:</p><a href="{{ object.pdf.url }}" target="_blank">Visualizar</a><br>
+        <a href="{% url 'EditaBloco' pk=object.pk %}"><button class="editar">Editar</button></a>
+        <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
+    </div>
 
 {% endblock %}

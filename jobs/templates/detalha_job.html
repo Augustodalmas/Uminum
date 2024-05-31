@@ -7,7 +7,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 8px;
-            width: 400px;
+            width: 500px;
             margin: auto; /* Adicionado para centralizar horizontalmente */
         }
 
@@ -63,17 +63,81 @@
         .container-fluid, .produto-card{
             height: 100%;
         }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .info-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #333;
+            width: 30%;
+        }
+
     </style>
 <div class="produto-card">
     <h1>Informações do JOB {{ object.job }}</h1>
-    <p><strong>job: </strong>{{ object.job }}</p>
-    <p><strong>Status_Engenharia: </strong>{{ object.Status_Engenharia }}</p>
-    <p><strong>Status_Projeto: </strong>{{ object.Status_Projeto }}</p>
-    <p><strong>Responsavel: </strong>{{ object.Responsavel }}</p>
-    <p><strong>Corrigido: </strong>{{ object.Corrigido }}</p>
-    <p><strong>Data_Alojamento: </strong>{{ object.Data_Alojamento }}</p>
-    <p><strong>Data_Detalhamento: </strong>{{ object.Data_Detalhamento }}</p>
+    <table class="info-table">
+        <tr>
+            <td><strong>Job:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.job }}</td>
+        </tr>
+        <tr>
+            <td><strong>Status Engenharia:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Status_Engenharia }}</td>
+        </tr>
+        <tr>
+            <td><strong>Status Projeto:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Status_Projeto }}</td>
+        </tr>
+        <tr>
+            <td><strong>Responsável:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Responsavel }}</td>
+        </tr>
+        <tr>
+            <td><strong>Corrigido:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Corrigido }}</td>
+        </tr>
+        <tr>
+            <td><strong>Data de Alojamento:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Data_Alojamento }}</td>
+        </tr>
+        <tr>
+            <td><strong>Data de Detalhamento:</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ object.Data_Detalhamento }}</td>
+        </tr>
+    </table>
     <a href="{% url 'EditaJob' pk=object.pk %}"><button class="editar">Editar</button></a>
     <a href="{% url 'ListaJob' %}"><button class="voltar">Voltar</button></a>
 </div>
+
+
 {% endblock %}

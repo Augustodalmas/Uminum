@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-    <style>
-
+    <!--<style>
         .produto-card {
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -136,16 +135,59 @@
             }
     }
 
+    </style>-->
+
+    <style>
+   .voltar{
+        width: 80px;
+        margin: 5px;
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .botao-submit{
+        width: 80px;
+        margin: 5px;
+        background-color: rgb(3, 189, 0);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    #div_id_pdf{
+        display: none;
+    }
+    
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        background-color: #cdcdcd;
+        color: white;
+        border-radius: 5px;
+    }
+
     </style>
 <div class="produto-card">
     <h1>Editar Informações Bloco</h1>
     <form method="post" class="form-alinhado-esquerda" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_table}}
+        {{ form|crispy }}
+        <label class="custom-file-upload">
+            <input type="file" name="pdf" id="pdf">
+        </label>
+        <br>
         <input type='submit' name="Atualizar" id="Atualizar" class="botao-submit">
         <a href="{% url 'ListaBloco' %}"><button class="voltar">Voltar</button></a>
     </form>
-
 </div>
-
 {% endblock %}
