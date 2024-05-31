@@ -17,15 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Blocos.views import  listaBlocos, detalheBloco, editaBloco, novoBloco
+from jobs.views import listaJobs, detalheJob, editaJob, criaJob
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('novo/', novoBloco.as_view(), name='novoJob'),
+    path('novo/', novoBloco.as_view(), name='novoBloco'),
+    path('novo_job/', criaJob.as_view(), name='novoJob'),
     path('', listaBlocos.as_view(), name='ListaBloco'),
+    path('Jobs', listaJobs.as_view(), name='ListaJob'),
     path('produto/<int:pk>/', detalheBloco.as_view(), name='DetalheBloco'),
-    path('produto/<int:pk>/editar/', editaBloco.as_view(), name='EditaBloco')
+    path('job/<int:pk>/', detalheJob.as_view(), name='DetalheJob'),
+    path('produto/<int:pk>/editar/', editaBloco.as_view(), name='EditaBloco'),
+    path('job/<int:pk>/editar/', editaJob.as_view(), name='EditaJob'),
 ]
 
 if settings.DEBUG:

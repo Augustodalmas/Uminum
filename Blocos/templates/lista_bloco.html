@@ -56,16 +56,15 @@
         }
 
         input[type="text"], [type="number"], button{
-            width: 120px;
+            width: 130px;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin: 0 10px;
         }
 
         #id_Serie{
             border: 1px solid #ccc;
-            width: 120px;
+            width: 130px;
             padding: 5px;
             margin: 0;
             margin-right: 10px;
@@ -91,7 +90,7 @@
         }
 
         .one, .two, .three, .four, .five{
-            background-color: rgb(195, 195, 195);
+            background-color: rgb(230, 229, 229);
             padding: 5px;
             margin: 5px;
             border-radius: 5px;
@@ -120,23 +119,26 @@
             color: rgb(0, 0, 0);
         }
 
+        th.name-filter{
+            width: 142px;
+        }
+
         </style>
 
     <form method="GET" action="{% url 'ListaBloco' %}" class="form-filter">
-        <!--<input type="text" autocomplete="off" name="search"  placeholder="Buscar...">A tag name, serve como referencia para a URL pesquisar no banco de dados-->
         <h1>Tabela de blocos</h1>
         <div class="filters">
             <table>
                 <thead>
                     <tr>
-                        <th>Série:</th>
-                        <th>Qtd. Pontos:</th>
-                        <th>Qtd. Resistencia:</th>
-                        <th>FormatoBloco:</th>
-                        <th>EntreCentrosX:</th>
-                        <th>EntreCentrosY:</th>
-                        <th>Job:</th>
-                        <th>Buscar:</th>
+                        <th class="name-filter">Série:</th>
+                        <th class="name-filter">Qtd. Pontos:</th>
+                        <th class="name-filter">Qtd. Resistencia:</th>
+                        <th class="name-filter">FormatoBloco:</th>
+                        <th class="name-filter">EntreCentrosX:</th>
+                        <th class="name-filter">EntreCentrosY:</th>
+                        <th class="name-filter">Job:</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -173,7 +175,7 @@
             {% endfor %}
         {% endif %}
     </div>
-    <a href="{% url 'novoJob' %}" class="static"><b>+</b>
+    <a href="{% url 'novoBloco' %}" class="static"><b>+</b>
         <i class="fas fa-plus"></i> <!-- Ícone de adição do Font Awesome -->
     </a>
 

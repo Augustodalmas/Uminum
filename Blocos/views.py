@@ -24,33 +24,7 @@ class listaBlocos(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
         return context
-"""
-class listaBlocos(ListView):
-    model = Produto
-    template_name = 'lista_bloco.html'
-    context_object_name = 'produto'
-    filterset_class = ProdutoFilter
 
-    def get_queryset(self):
-        queryset = super().get_queryset().order_by('-Job')
-        search_term = self.request.GET.get('search')
-        filter_by = self.request.GET.get('filter_by')
-
-        if search_term and filter_by:
-            # Verifica qual campo o usuário deseja pesquisar e filtra o queryset
-            if filter_by == 'entreCentrosX':
-                queryset = queryset.filter(entreCentrosX__contains=search_term)
-            elif filter_by == 'entreCentrosY':
-                queryset = queryset.filter(entreCentrosY__contains=search_term)
-            elif filter_by == 'formatoBloco':
-                queryset = queryset.filter(formatoBloco__formato__contains=search_term)
-            elif filter_by == 'qtdPontos':
-                queryset = queryset.filter(qtdPontos__contains=search_term)
-            elif filter_by == 'Job':
-                queryset = queryset.filter(Job__contains=search_term)
-
-        return queryset
-"""
 
 class novoBloco(CreateView):
     model = Produto
@@ -61,7 +35,7 @@ class novoBloco(CreateView):
 
 class detalheBloco(DetailView):
     model = Produto
-    template_name = 'detalha_bloco.html'
+    template_name = 'detalha_job.html'
     context_object_name = 'object'
     pk_url_kwarg = 'pk' #Utilizar pk pois 'pk' é o valor do ID do objeto
 

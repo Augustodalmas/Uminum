@@ -25,7 +25,7 @@ class Produto(models.Model):
     formatoBloco = models.ForeignKey(Formato, on_delete=models.PROTECT, related_name='formasBlocos')
     entreCentrosX = models.IntegerField(blank=False, null=False)
     entreCentrosY = models.IntegerField(blank=False, null=False)
-    pdf = models.FileField(upload_to='', default='media/pdfs/ola.pdf', blank=False, null=False)
+    pdf = models.FileField(upload_to='', default='ola.pdf', blank=False, null=False)
     obs = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self) -> str:

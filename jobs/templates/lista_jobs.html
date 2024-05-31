@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px;
+  }
+
+  .card {
+    width: 300px; /* Largura do card */
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 25px;
+  }
+
+  .card h2 {
+    margin-bottom: 10px;
+  }
+
+  .info {
+    color: black;
+  }
+
+  .info p {
+    margin: 5px 0;
+    line-height: 1.4;
+  }
+
+  .info strong {
+    font-weight: bold;
+  }
+
+  .andamento {
+    background-color: rgba(184, 255, 151, 0.8)
+  }
+
+  .revisao {
+      background-color: rgba(143, 169, 255, 0.8);
+  }
+
+  .revisao-superior {
+      background-color: rgba(233, 144, 255, 0.8);
+  }
+
+  .finalizado {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+  }
+
+  .outro-status {
+      border: 3px solid rgb(255, 255, 255);
+  }
+
+  .container a{
+    color: black;
+  }
+
+  .container a:hover{
+    color: black;
+    text-decoration: none;
+  }
+
+  select, input[type="text"], [type="number"]{
+    width: 150px;
+    height: 35px;
+    margin: 0px 0px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #jobs{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  input[type="text"], select{
+    margin: 0px 0px;
+  }
+
+  .name-filter{
+    width: 160px;
+  }
+
+  button {
+    padding: 6px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .static {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    padding-top: 2px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .static b{
+    font-size: 35px;
+  }
+
+  .excel-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+  }
+
+  .excel-table th, .excel-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .excel-table th {
+    background-color: #f2f2f2;
+    border: solid 1px black;
+  }
+
+  .excel-table td{
+    border: solid 1px black;
+  }
+
+  .excel-table tbody tr:hover {
+    background-color: rgb(255, 213, 0);
+    color: rgb(0, 0, 0);
+  }
+  
+</style>
+<body>
+  <form method="GET" action="{% url 'ListaJob' %}" class="form-filter">
+    <div class="filter">
+      <table>
+        <thead>
+            <tr>
+                <th class="name-filter">job:</th>
+                <th class="name-filter">Status_Engenharia:</th>
+                <th class="name-filter">Status_Projeto:</th>
+                <th class="name-filter">Responsavel:</th>
+                <th class="name-filter">Corrigido:</th>
+                <th class="name-filter">Data_Alojamento:</th>
+                <th class="name-filter">Data_Detalhamento:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{filter.form.job}}</td>
+                <td>{{filter.form.Status_Engenharia}}</td>
+                <td>{{filter.form.Status_Projeto}}</td>
+                <td>{{filter.form.Responsavel}}</td>
+                <td>{{filter.form.Corrigido}}</td>
+                <td><input type="date" name="Data_Alojamento" value="{{filter.form.Data_Alojamento.value}}"></td>
+                <td><input type="date" name="Data_Detalhamento" value="{{filter.form.Data_Detalhamento.value}}"></td>
+                <td><button type="submit">Buscar</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div><!--filter-->
+  </form> 
+  <div class="container">
+    {% if job %}
+    <table class="excel-table">
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Status Engenharia</th>
+          <th>Status Projeto</th>
+          <th>Responsável</th>
+          <th>Corrigido</th>
+          <th>Data Alojamento</th>
+          <th>Data Detalhamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for object in job %}
+        <a href="#">
+          <tr id="form-excel" class="
+              {% if object.Status_Projeto == 'Andamento' %}andamento
+              {% elif object.Status_Projeto == 'Revisão' %}revisao
+              {% elif object.Status_Projeto == 'Crestani' %}revisao-superior
+              {% elif object.Status_Projeto == 'Finalizado' %}finalizado
+              {% else %}outro-status{% endif %}" 
+              onclick="window.location.href='{% url 'DetalheJob' object.pk %}';" style="cursor:pointer;">
+          <td>{{ object.job }}</td>
+          <td>{{ object.Status_Engenharia }}</td>
+          <td>{{ object.Status_Projeto }}</td>
+          <td>{{ object.Responsavel }}</td>
+          <td>{{ object.Corrigido }}</td>
+          <td>{{ object.Data_Alojamento }}</td>
+          <td>{{ object.Data_Detalhamento }}</td>
+        </tr>
+        </a>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+  <a href="{% url 'novoJob' %}" class="static"><b>+</b>
+    <i class="fas fa-plus"></i> <!-- Ícone de adição do Font Awesome -->
+  </a>
+
+</body>
+{% endblock %}
+
+<!--
+  <a href="{% url 'DetalheJob' object.pk %}">
+      <div draggable="true" class="card {% if object.Status_Projeto == 'Andamento' %}andamento
+      {% elif object.Status_Projeto == 'Revisão' %}revisao
+      {% elif object.Status_Projeto == 'Crestani' %}revisao-superior
+      {% elif object.Status_Projeto == 'Finalizado' %}finalizado
+      {% else %}outro-status{% endif %}">
+        <h2>JOB {{ object.job }}</h2>
+        <div class="info">
+            <p><strong>Status Engenharia:</strong> {{ object.Status_Engenharia }}</p>
+            <p><strong>Status Projeto:</strong> {{ object.Status_Projeto }}</p>
+            <p><strong>Responsável:</strong> {{ object.Responsavel }}</p>
+            <p><strong>Correção:</strong> {{ object.Corrigido }}</p>
+            <p><strong>Data de Alojamento:</strong> {{ object.Data_Alojamento }}</p>
+            <p><strong>Data de Detalhamento:</strong> {{ object.Data_Detalhamento }}</p>
+        </div>
+      </a>
+    </div>
+  -->

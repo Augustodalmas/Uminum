@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    .voltar{
+        width: 80px;
+        margin: 5px;
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .botao-submit{
+        width: 80px;
+        margin: 5px;
+        background-color: rgb(3, 189, 0);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+</style>
+<div class="produto-card">
+    <h1>Editar Informações Bloco</h1>
+    <form method="post" class="form-alinhado-esquerda" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type='submit' name="Atualizar" id="Atualizar" class="botao-submit">
+        <a href="{% url 'ListaJob' %}"><button class="voltar">Voltar</button></a>
+    </form>
+</div>
+{% endblock %}
